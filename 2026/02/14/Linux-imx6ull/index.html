@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux嵌入式iMX6ULL | CYL's blog</title><meta name="author" content="saoCYL"><meta name="copyright" content="saoCYL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。 官方资料下载链接1http:&#x2F;&#x2F;www.openedv.com&#x2F;docs&#x2F;boards&#x2F;arm-l">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux嵌入式iMX6ULL">
+<meta property="og:url" content="https://saocyl.github.io/2026/02/14/Linux-imx6ull/index.html">
+<meta property="og:site_name" content="CYL&#39;s blog">
+<meta property="og:description" content="碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。 官方资料下载链接1http:&#x2F;&#x2F;www.openedv.com&#x2F;docs&#x2F;boards&#x2F;arm-l">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://saocyl.github.io/img/profile_picture.png">
+<meta property="article:published_time" content="2026-02-14T05:14:10.000Z">
+<meta property="article:modified_time" content="2026-02-15T09:42:16.647Z">
+<meta property="article:author" content="saoCYL">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="嵌入式">
+<meta property="article:tag" content="正点原子imx6ull">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://saocyl.github.io/img/profile_picture.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux嵌入式iMX6ULL",
+  "url": "https://saocyl.github.io/2026/02/14/Linux-imx6ull/",
+  "image": "https://saocyl.github.io/img/profile_picture.png",
+  "datePublished": "2026-02-14T05:14:10.000Z",
+  "dateModified": "2026-02-15T09:42:16.647Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "saoCYL",
+      "url": "https://saoCYL.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/183_%E8%96%AF%E6%9D%A1.png"><link rel="canonical" href="https://saocyl.github.io/2026/02/14/Linux-imx6ull/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.5.4"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux嵌入式iMX6ULL',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/IMG_2064_2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/183_%E8%96%AF%E6%9D%A1.png" alt="Logo"><span class="site-name">CYL's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux嵌入式iMX6ULL</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Linux嵌入式iMX6ULL</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-14T05:14:10.000Z" title="发表于 2026-02-14 13:14:10">2026-02-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-15T09:42:16.647Z" title="更新于 2026-02-15 17:42:16">2026-02-15</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">738</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。<br><img src="/2026/02/14/Linux-imx6ull/image.png" alt="正点原子linux开发板"></p>
+<h3 id="官方资料下载链接"><a href="#官方资料下载链接" class="headerlink" title="官方资料下载链接"></a>官方资料下载链接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.openedv.com/docs/boards/arm-linux/zdyz-i.mx6ull.html</span><br></pre></td></tr></table></figure>
+
+<h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><p>嵌入式Linux开发需要在linux环境下进行，如果安装双系统那么一次只能用一个系统，因此需要下载虚拟机。<br>VMware是收费软件需要密钥，可以在tb上花几块钱买一个。</p>
+<h2 id="配置虚拟机"><a href="#配置虚拟机" class="headerlink" title="配置虚拟机"></a>配置虚拟机</h2><ul>
+<li>CPU分配（核心数量），一般55分</li>
+<li>内存分配 8G+</li>
+<li>硬盘 创建独立分区 300G+</li>
+</ul>
+<h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>选择Ubuntu 64位<br>在虚拟机创建上网课讲的非常啰嗦还是错的，我的笔记本使用i5-13500HX，如果未来要用ros这种编译比较多的可以给一个处理器*6核，这个根据自己电脑配置来定去问ai~</p>
+<ul>
+<li>硬盘 300G(其实60G就够)</li>
+<li>CPU 1*6核</li>
+<li>内存 8G </li>
+<li>网络选择桥接模式</li>
+<li>其他默认</li>
+</ul>
+<h2 id="Ubuntu操作系统安装"><a href="#Ubuntu操作系统安装" class="headerlink" title="Ubuntu操作系统安装"></a>Ubuntu操作系统安装</h2><p>安装好ubuntu系统后需要安装VMware tools，官方视频太古老了不好用，因为新版本的Ubuntu有open-vm-tools。我们打开终端，进入root。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install -y open-vm-tools open-vm-tools-desktop</span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+<p>现在就可以在虚拟机和win系统之间自由移动了，最重要的是可以复制粘贴两个系统的东西了。</p>
+<h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="目录操作"><a href="#目录操作" class="headerlink" title="目录操作"></a>目录操作</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>ls -a</code></td>
+<td align="left">查看目录所有文件和文件夹（包括隐藏文件）</td>
+</tr>
+<tr>
+<td align="left"><code>cd /</code></td>
+<td align="left">进入 Linux 根目录</td>
+</tr>
+<tr>
+<td align="left"><code>mkdir</code></td>
+<td align="left">创建文件夹</td>
+</tr>
+</tbody></table>
+<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>touch</code></td>
+<td align="left">创建文件</td>
+</tr>
+<tr>
+<td align="left"><code>cat</code></td>
+<td align="left">显示文件内容</td>
+</tr>
+<tr>
+<td align="left"><code>cp</code></td>
+<td align="left">文件拷贝命令</td>
+</tr>
+<tr>
+<td align="left"><code>mv a b</code></td>
+<td align="left">重命名文件（a → b）</td>
+</tr>
+<tr>
+<td align="left"><code>mv a b/</code></td>
+<td align="left">移动文件（a 移动到 b 文件夹里）</td>
+</tr>
+<tr>
+<td align="left"><code>rm</code></td>
+<td align="left">删除文件</td>
+</tr>
+<tr>
+<td align="left"><code>rm -r</code></td>
+<td align="left">删除目录（递归删除）</td>
+</tr>
+<tr>
+<td align="left"><code>rm -f</code></td>
+<td align="left">强制删除（无需确认）</td>
+</tr>
+<tr>
+<td align="left"><code>file 文件名</code></td>
+<td align="left">文件类型查看命令</td>
+</tr>
+</tbody></table>
+<h2 id="查找搜索"><a href="#查找搜索" class="headerlink" title="查找搜索"></a>查找搜索</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>find -name 文件名</code></td>
+<td align="left">按文件名查找</td>
+</tr>
+<tr>
+<td align="left"><code>grep nr &quot;ubuntu&quot; /</code></td>
+<td align="left">在根目录递归查找包含”ubuntu”的内容（n显示行号，r递归）</td>
+</tr>
+</tbody></table>
+<h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>uname</code></td>
+<td align="left">系统信息查看命令</td>
+</tr>
+<tr>
+<td align="left"><code>ps -aux</code></td>
+<td align="left">查看当前系统进程（类似任务管理器）</td>
+</tr>
+<tr>
+<td align="left"><code>top</code></td>
+<td align="left">进程实时运行状态查看命令</td>
+</tr>
+</tbody></table>
+<h2 id="网络相关"><a href="#网络相关" class="headerlink" title="网络相关"></a>网络相关</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>sudo apt install net-tools</code></td>
+<td align="left">安装网络工具包</td>
+</tr>
+<tr>
+<td align="left"><code>ifconfig</code></td>
+<td align="left">显示网络信息（例如 IP 地址）</td>
+</tr>
+</tbody></table>
+<h2 id="其他常用"><a href="#其他常用" class="headerlink" title="其他常用"></a>其他常用</h2><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>clear</code></td>
+<td align="left">清屏</td>
+</tr>
+<tr>
+<td align="left"><code>sync</code></td>
+<td align="left">数据同步写入磁盘</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saoCYL.github.io">saoCYL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saocyl.github.io/2026/02/14/Linux-imx6ull/">https://saocyl.github.io/2026/02/14/Linux-imx6ull/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saoCYL.github.io" target="_blank">CYL's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a><a class="post-meta__tags" href="/tags/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull/">正点原子imx6ull</a></div><div class="post-share"><div class="social-share" data-image="/img/profile_picture.png" data-sites="x,wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile_picture.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">saoCYL</div><div class="author-info-description">一个正在成长的开发者 🚀</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/saoCYL"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/saoCYL" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">官方资料下载链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">配置虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">新建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Ubuntu操作系统安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">目录操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2"><span class="toc-number">3.3.</span> <span class="toc-text">查找搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">3.4.</span> <span class="toc-text">系统信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="toc-number">3.5.</span> <span class="toc-text">网络相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8"><span class="toc-number">3.6.</span> <span class="toc-text">其他常用</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/14/Linux-imx6ull/" title="Linux嵌入式iMX6ULL">Linux嵌入式iMX6ULL</a><time datetime="2026-02-14T05:14:10.000Z" title="发表于 2026-02-14 13:14:10">2026-02-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/IMG_2064_2.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By saoCYL</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        loader: {
+          load: [
+            // Four font extension packages (optional)
+            //- '[tex]/bbm',
+            //- '[tex]/bboldx',
+            //- '[tex]/dsfont',
+            '[tex]/mhchem'
+          ],
+          paths: {
+            'mathjax-newcm': '[mathjax]/../@mathjax/mathjax-newcm-font',
+
+            //- // Four font extension packages (optional)
+            //- 'mathjax-bbm-extension': '[mathjax]/../@mathjax/mathjax-bbm-font-extension',
+            //- 'mathjax-bboldx-extension': '[mathjax]/../@mathjax/mathjax-bboldx-font-extension',
+            //- 'mathjax-dsfont-extension': '[mathjax]/../@mathjax/mathjax-dsfont-font-extension',
+            'mathjax-mhchem-extension': '[mathjax]/../@mathjax/mathjax-mhchem-font-extension'
+          }
+        },
+        output: {
+          font: 'mathjax-newcm',
+        },
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+          packages: {
+            '[+]': [
+              'mhchem'
+            ]
+          }
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          menuOptions: {
+            settings: {
+              enrich: false  // Turn off Braille and voice narration text automatic generation
+            }
+          },
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@4.1.0/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/dist/fireworks.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
