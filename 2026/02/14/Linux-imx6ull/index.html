@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux嵌入式iMX6ULL（第一章-前期准备） | CYL's blog</title><meta name="author" content="saoCYL"><meta name="copyright" content="saoCYL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。 官方资料下载链接1http:&#x2F;&#x2F;www.openedv.com&#x2F;docs&#x2F;boards&#x2F;arm-l">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Linux嵌入式iMX6ULL（第一章-ubuntu） | CYL's blog</title><meta name="author" content="saoCYL"><meta name="copyright" content="saoCYL"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。 官方资料下载链接1http:&#x2F;&#x2F;www.openedv.com&#x2F;docs&#x2F;boards&#x2F;arm-l">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux嵌入式iMX6ULL（第一章-前期准备）">
+<meta property="og:title" content="Linux嵌入式iMX6ULL（第一章-ubuntu）">
 <meta property="og:url" content="https://saocyl.github.io/2026/02/14/Linux-imx6ull/index.html">
 <meta property="og:site_name" content="CYL&#39;s blog">
 <meta property="og:description" content="碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。 官方资料下载链接1http:&#x2F;&#x2F;www.openedv.com&#x2F;docs&#x2F;boards&#x2F;arm-l">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://saocyl.github.io/img/profile_picture.png">
 <meta property="article:published_time" content="2026-02-14T05:14:10.000Z">
-<meta property="article:modified_time" content="2026-02-22T16:07:59.710Z">
+<meta property="article:modified_time" content="2026-03-04T16:10:32.680Z">
 <meta property="article:author" content="saoCYL">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="嵌入式">
@@ -16,11 +16,11 @@
 <meta name="twitter:image" content="https://saocyl.github.io/img/profile_picture.png"><script type="application/ld+json">{
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "Linux嵌入式iMX6ULL（第一章-前期准备）",
+  "headline": "Linux嵌入式iMX6ULL（第一章-ubuntu）",
   "url": "https://saocyl.github.io/2026/02/14/Linux-imx6ull/",
   "image": "https://saocyl.github.io/img/profile_picture.png",
   "datePublished": "2026-02-14T05:14:10.000Z",
-  "dateModified": "2026-02-22T16:07:59.710Z",
+  "dateModified": "2026-03-04T16:10:32.680Z",
   "author": [
     {
       "@type": "Person",
@@ -152,11 +152,11 @@
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'Linux嵌入式iMX6ULL（第一章-前期准备）',
+  title: 'Linux嵌入式iMX6ULL（第一章-ubuntu）',
   isHighlightShrink: false,
   isToc: true,
   pageType: 'post'
-}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/IMG_2064_2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/183_%E8%96%AF%E6%9D%A1.png" alt="Logo"><span class="site-name">CYL's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux嵌入式iMX6ULL（第一章-前期准备）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Linux嵌入式iMX6ULL（第一章-前期准备）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-14T05:14:10.000Z" title="发表于 2026-02-14 13:14:10">2026-02-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-02-22T16:07:59.710Z" title="更新于 2026-02-23 00:07:59">2026-02-23</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。<br><img src="/2026/02/14/Linux-imx6ull/image.png" alt="正点原子linux开发板"></p>
+}</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 8.1.1"></head><body><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/IMG_2064_2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="/img/183_%E8%96%AF%E6%9D%A1.png" alt="Logo"><span class="site-name">CYL's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Linux嵌入式iMX6ULL（第一章-ubuntu）</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"></div></nav><div id="post-info"><h1 class="post-title">Linux嵌入式iMX6ULL（第一章-ubuntu）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-02-14T05:14:10.000Z" title="发表于 2026-02-14 13:14:10">2026-02-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-03-04T16:10:32.680Z" title="更新于 2026-03-05 00:10:32">2026-03-05</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>8分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>碎碎念：这是我写的第一篇博客，打算利用md把自己的学习过程记录下来也许能加深对代码的理解。在ai时代我时常陷入焦虑，ai实在是太方便了，我几乎不需要复杂的思考或者知识储备甚至不用动手就可以完成一个项目，可是在些项目之后我的能力并没有得到锻炼。正好开了新坑，买了块linux的板子玩玩，做做笔记也挺好。<br><img src="/2026/02/14/Linux-imx6ull/image.png" alt="正点原子linux开发板"></p>
 <h3 id="官方资料下载链接"><a href="#官方资料下载链接" class="headerlink" title="官方资料下载链接"></a>官方资料下载链接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.openedv.com/docs/boards/arm-linux/zdyz-i.mx6ull.html</span><br></pre></td></tr></table></figure>
 
 <h1 id="虚拟机"><a href="#虚拟机" class="headerlink" title="虚拟机"></a>虚拟机</h1><p>嵌入式Linux开发需要在linux环境下进行，如果安装双系统那么一次只能用一个系统，因此需要下载虚拟机。<br>VMware是收费软件需要密钥，可以在tb上花几块钱买一个。</p>
@@ -406,7 +406,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -h | grep sdb1</span><br></pre></td></tr></table></figure>
 <p>挂载成功</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/sdb1       118G  768K  118G    1% /media/cyl/udisk</span><br></pre></td></tr></table></figure>
-<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
+<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo umount /media/cyl/udisk -f #强制卸载</span><br><span class="line">sudo fdisk /dev/sdb</span><br></pre></td></tr></table></figure>
 <p>注意在磁盘分区前要卸载U盘，否则有可能导致数据损坏</p>
 <table>
 <thead>
@@ -489,7 +489,126 @@
 <td align="left">现代U盘、大文件传输</td>
 </tr>
 </tbody></table>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saoCYL.github.io">saoCYL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saocyl.github.io/2026/02/14/Linux-imx6ull/">https://saocyl.github.io/2026/02/14/Linux-imx6ull/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saoCYL.github.io" target="_blank">CYL's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a><a class="post-meta__tags" href="/tags/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull/">正点原子imx6ull</a></div><div class="post-share"><div class="social-share" data-image="/img/profile_picture.png" data-sites="x,wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile_picture.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">saoCYL</div><div class="author-info-description">分享学习日常的小菜鸟</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/saoCYL"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/saoCYL" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">官方资料下载链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">配置虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">新建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Ubuntu操作系统安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">目录操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2"><span class="toc-number">3.3.</span> <span class="toc-text">查找搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">3.4.</span> <span class="toc-text">系统信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="toc-number">3.5.</span> <span class="toc-text">网络相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8"><span class="toc-number">3.6.</span> <span class="toc-text">其他常用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">ubuntu软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85git"><span class="toc-number">4.1.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85mplayer"><span class="toc-number">4.2.</span> <span class="toc-text">安装mplayer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">ubuntu文件系统结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%92%8C%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-number">6.</span> <span class="toc-text">绝对路径和相对路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E4%B8%8B%E7%9A%84%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">ubuntu下的磁盘管理（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E4%B8%8E%E5%8D%B8%E8%BD%BD"><span class="toc-number">7.1.</span> <span class="toc-text">磁盘挂载与卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="toc-number">7.2.</span> <span class="toc-text">磁盘分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">7.3.</span> <span class="toc-text">格式化</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/14/Linux-imx6ull/" title="Linux嵌入式iMX6ULL（第一章-前期准备）">Linux嵌入式iMX6ULL（第一章-前期准备）</a><time datetime="2026-02-14T05:14:10.000Z" title="发表于 2026-02-14 13:14:10">2026-02-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/IMG_2064_2.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By saoCYL</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
+<h1 id="Ubuntu的压缩与解压缩"><a href="#Ubuntu的压缩与解压缩" class="headerlink" title="Ubuntu的压缩与解压缩"></a>Ubuntu的压缩与解压缩</h1><p>Linux下常用的压缩扩展名有：<code>.tar</code>;<code>.tar.bz2</code>;<code>.tar.gz</code> &lt;– 这里视频有点老了，新版本的Ubuntu支持<code>.zip</code>和<code>.7z</code>了只要安装一下支持就好。</p>
+<h2 id="例如zip的操作"><a href="#例如zip的操作" class="headerlink" title="例如zip的操作"></a>例如zip的操作</h2><table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">压缩单个文件</td>
+<td align="left"><code>zip 压缩包.zip 文件.txt</code></td>
+<td align="left">将 file.txt 压缩为 archive.zip</td>
+</tr>
+<tr>
+<td align="left">压缩多个文件</td>
+<td align="left"><code>zip 压缩包.zip 文件1.txt 文件2.txt 文件3.txt</code></td>
+<td align="left">压缩多个指定文件</td>
+</tr>
+<tr>
+<td align="left">压缩文件夹</td>
+<td align="left"><code>zip -r 压缩包.zip 文件夹/</code></td>
+<td align="left">-r 递归压缩整个文件夹</td>
+</tr>
+<tr>
+<td align="left">压缩并排除文件</td>
+<td align="left"><code>zip -r 压缩包.zip 文件夹/ -x &quot;*.git*&quot;</code></td>
+<td align="left">排除 .git 文件夹或指定文件</td>
+</tr>
+<tr>
+<td align="left">加密压缩</td>
+<td align="left"><code>zip -e 加密压缩包.zip 文件.txt</code></td>
+<td align="left">-e 提示输入密码加密</td>
+</tr>
+<tr>
+<td align="left">直接指定密码</td>
+<td align="left"><code>zip -P 密码 加密压缩包.zip 文件.txt</code></td>
+<td align="left">-P 直接指定密码（不安全）</td>
+</tr>
+<tr>
+<td align="left">最大压缩</td>
+<td align="left"><code>zip -9 压缩包.zip 大文件.iso</code></td>
+<td align="left">-9 最大压缩（速度最慢）</td>
+</tr>
+<tr>
+<td align="left">快速压缩</td>
+<td align="left"><code>zip -1 压缩包.zip 文件.txt</code></td>
+<td align="left">-1 最快压缩（体积最大）</td>
+</tr>
+<tr>
+<td align="left">更新压缩包</td>
+<td align="left"><code>zip -u 压缩包.zip 新文件.txt</code></td>
+<td align="left">添加新文件或更新已存在文件</td>
+</tr>
+<tr>
+<td align="left">删除包内文件</td>
+<td align="left"><code>zip -d 压缩包.zip 要删除的文件.txt</code></td>
+<td align="left">从压缩包中删除指定文件</td>
+</tr>
+<tr>
+<td align="left">压缩后删除原文件</td>
+<td align="left"><code>zip -m 压缩包.zip 文件.txt</code></td>
+<td align="left">压缩后自动删除原文件</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="left">操作</th>
+<th align="left">命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">解压到当前目录</td>
+<td align="left"><code>unzip 压缩包.zip</code></td>
+<td align="left">解压所有文件到当前文件夹</td>
+</tr>
+<tr>
+<td align="left">解压到指定目录</td>
+<td align="left"><code>unzip 压缩包.zip -d /目标/路径</code></td>
+<td align="left">-d 指定解压目录（目录不存在会自动创建）</td>
+</tr>
+<tr>
+<td align="left">查看压缩包内容</td>
+<td align="left"><code>unzip -l 压缩包.zip</code></td>
+<td align="left">列出压缩包中的文件（不解压）</td>
+</tr>
+<tr>
+<td align="left">解压并覆盖</td>
+<td align="left"><code>unzip -o 压缩包.zip</code></td>
+<td align="left">-o 覆盖已有文件而不提示</td>
+</tr>
+<tr>
+<td align="left">不解压已存在文件</td>
+<td align="left"><code>unzip -n 压缩包.zip</code></td>
+<td align="left">-n 不覆盖已有文件</td>
+</tr>
+<tr>
+<td align="left">解压特定文件</td>
+<td align="left"><code>unzip 压缩包.zip 文件1.txt 文件2.txt</code></td>
+<td align="left">只解压指定的文件</td>
+</tr>
+<tr>
+<td align="left">解压特定类型</td>
+<td align="left"><code>unzip 压缩包.zip &quot;*.txt&quot;</code></td>
+<td align="left">只解压所有 .txt 文件</td>
+</tr>
+<tr>
+<td align="left">安静模式解压</td>
+<td align="left"><code>unzip -q 压缩包.zip</code></td>
+<td align="left">-q 不显示解压过程</td>
+</tr>
+<tr>
+<td align="left">测试压缩包完整性</td>
+<td align="left"><code>unzip -t 压缩包.zip</code></td>
+<td align="left">测试文件是否损坏</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://saoCYL.github.io">saoCYL</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://saocyl.github.io/2026/02/14/Linux-imx6ull/">https://saocyl.github.io/2026/02/14/Linux-imx6ull/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://saoCYL.github.io" target="_blank">CYL's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Linux/">Linux</a><a class="post-meta__tags" href="/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/">嵌入式</a><a class="post-meta__tags" href="/tags/%E6%AD%A3%E7%82%B9%E5%8E%9F%E5%AD%90imx6ull/">正点原子imx6ull</a></div><div class="post-share"><div class="social-share" data-image="/img/profile_picture.png" data-sites="x,wechat,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/profile_picture.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">saoCYL</div><div class="author-info-description">分享学习日常的小菜鸟</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">1</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">3</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">0</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/saoCYL"><i class="fab fa-github"></i><span>GitHub</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/saoCYL" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%98%E6%96%B9%E8%B5%84%E6%96%99%E4%B8%8B%E8%BD%BD%E9%93%BE%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">官方资料下载链接</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.</span> <span class="toc-text">虚拟机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.1.</span> <span class="toc-text">配置虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-number">2.2.</span> <span class="toc-text">新建虚拟机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ubuntu%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85"><span class="toc-number">2.3.</span> <span class="toc-text">Ubuntu操作系统安装</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">3.</span> <span class="toc-text">Linux常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%93%8D%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">目录操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="toc-number">3.2.</span> <span class="toc-text">文件操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2"><span class="toc-number">3.3.</span> <span class="toc-text">查找搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-number">3.4.</span> <span class="toc-text">系统信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3"><span class="toc-number">3.5.</span> <span class="toc-text">网络相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%B8%B8%E7%94%A8"><span class="toc-number">3.6.</span> <span class="toc-text">其他常用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">4.</span> <span class="toc-text">ubuntu软件安装</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85git"><span class="toc-number">4.1.</span> <span class="toc-text">安装git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85mplayer"><span class="toc-number">4.2.</span> <span class="toc-text">安装mplayer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%BB%93%E6%9E%84"><span class="toc-number">5.</span> <span class="toc-text">ubuntu文件系统结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%92%8C%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="toc-number">6.</span> <span class="toc-text">绝对路径和相对路径</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ubuntu%E4%B8%8B%E7%9A%84%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86%EF%BC%88%E9%87%8D%E8%A6%81%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">ubuntu下的磁盘管理（重要）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E6%8C%82%E8%BD%BD%E4%B8%8E%E5%8D%B8%E8%BD%BD"><span class="toc-number">7.1.</span> <span class="toc-text">磁盘挂载与卸载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="toc-number">7.2.</span> <span class="toc-text">磁盘分区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="toc-number">7.3.</span> <span class="toc-text">格式化</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Ubuntu%E7%9A%84%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="toc-number">8.</span> <span class="toc-text">Ubuntu的压缩与解压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E5%A6%82zip%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">8.1.</span> <span class="toc-text">例如zip的操作</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/02/14/Linux-imx6ull/" title="Linux嵌入式iMX6ULL（第一章-ubuntu）">Linux嵌入式iMX6ULL（第一章-ubuntu）</a><time datetime="2026-02-14T05:14:10.000Z" title="发表于 2026-02-14 13:14:10">2026-02-14</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/IMG_2064_2.jpg);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By saoCYL</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.1</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.5.4</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.5.4"></script><script src="/js/main.js?v=5.5.4"></script><div class="js-pjax"><script>(() => {
   const loadMathjax = () => {
     if (!window.MathJax) {
       window.MathJax = {
